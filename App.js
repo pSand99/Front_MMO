@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import FeedScreen from './screens/FeedScreen';
+import FeedScreen2 from './screens/FeedScreen -bueno';
 import ConversationsScreen from './screens/ConversationsScreen'; 
 
 

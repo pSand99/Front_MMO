@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // Importar el ícono de Ionicons
+import { Ionicons } from '@expo/vector-icons';
 
 
 const FeedScreen = () => {
@@ -17,7 +17,7 @@ const FeedScreen = () => {
     const simulatedPosts = [
       {
         id: 1,
-        username: 'usuario1',
+        username: 'usuario1A',
         text: '¡Hola mundo!',
       },
       {
@@ -94,7 +94,6 @@ const FeedScreen = () => {
     navigation.navigate('Conversations');
   };
 
-
   return (
     // <View style={styles.container}>
     //   <Text style={styles.title}>Feed de Publicaciones</Text>
@@ -107,51 +106,56 @@ const FeedScreen = () => {
     //   <Button title="Cerrar sesión" onPress={handleLogout} />
     // </View>
 
-<ScrollView contentContainerStyle={styles.scrollContainer}>
-<View style={styles.container}>
-  <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainer}>
-      <Ionicons name="chatbubbles-outline" size={24} color="black" />
-  </TouchableOpacity>
+    <View style={styles.outerContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      
+        <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainer}>
+          <Ionicons name="chatbubbles-outline" size={24} color="black" />
+        </TouchableOpacity>
 
-  <Text style={styles.title}>Feed de Publicaciones</Text>
-  {posts.map(post => (
-    <View key={post.id} style={styles.postContainer}>
-      <Text style={styles.username}>{post.username}</Text>
-      <Text style={styles.text}>{post.text}</Text>
+          <Text style={styles.title}>Feed de Publicaciones</Text>
+          {posts.map(post => (
+            <View key={post.id} style={styles.postContainer}>
+              <Text style={styles.username}>{post.username}</Text>
+              <Text style={styles.text}>{post.text}</Text>
+            </View>
+          ))}
+
+        <Button title="Cerrar sesión" onPress={handleLogout} />
+      </ScrollView>
+
     </View>
-  ))}
-  <Button title="Cerrar sesión" onPress={handleLogout} />
-</View>
-</ScrollView>
-  );
-};
+
+    );
+}
+
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
+  outerContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  scrollContainer: {
+    flex: 1,
+    position: 'absolute',
+    width: '100%',
+    padding: 20,
+    alignItems: 'center',
   },
   iconContainer: {
     position: 'absolute',
     top: 20,
     right: 20,
   },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
   postContainer: {
     backgroundColor: '#fff',
-    width: 500,
-    borderRadius: 20, // Bordes redondeados
+    width: '100%',
+    maxWidth: 500,
+    borderRadius: 20,
     marginBottom: 20,
     padding: 15,
     shadowColor: '#000',
