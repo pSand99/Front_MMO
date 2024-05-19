@@ -116,8 +116,7 @@ const ConversationsScreen = () => {
 
   const handleConversationPress = (conversationId) => {
     // Aquí podemos navegar a la pantalla de detalle de la conversación
-    // Por ahora, simularemos imprimir el ID de la conversación
-    console.log(`Conversación seleccionada: ${conversationId}`);
+    navigation.navigate('SingleChat');
   };
 
   // Calcula el ancho de cada mosaico basado en el ancho de la pantalla

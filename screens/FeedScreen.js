@@ -17,7 +17,7 @@ const FeedScreen = () => {
     const simulatedPosts = [
       {
         id: 1,
-        username: 'usuario1A',
+        username: 'usuario1',
         text: '¡Hola mundo!',
       },
       {
@@ -107,11 +107,11 @@ const FeedScreen = () => {
     // </View>
 
     <View style={styles.outerContainer}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-      
         <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainer}>
           <Ionicons name="chatbubbles-outline" size={24} color="black" />
         </TouchableOpacity>
+
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
 
           <Text style={styles.title}>Feed de Publicaciones</Text>
           {posts.map(post => (
@@ -121,9 +121,8 @@ const FeedScreen = () => {
             </View>
           ))}
 
-        <Button title="Cerrar sesión" onPress={handleLogout} />
+        <Button title="Cerrar sesión" onPress={handleConversationsPress} />
       </ScrollView>
-
     </View>
 
     );
