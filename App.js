@@ -7,8 +7,6 @@ import FeedScreen from './screens/FeedScreen';
 import ConversationsScreen from './screens/ConversationsScreen';
 import SingleChatScreen from './screens/SingleChatScreen';
 
-
-
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -20,7 +18,6 @@ const App = () => {
         <Stack.Screen name="Feed" component={FeedScreen} />
         <Stack.Screen name="Conversations" component={ConversationsScreen} />
         <Stack.Screen name="SingleChat" component={SingleChatScreen} />
-        
       </Stack.Navigator>
     </NavigationContainer>
   );

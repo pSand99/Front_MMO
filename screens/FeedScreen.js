@@ -8,6 +8,14 @@ const FeedScreen = () => {
   const [posts, setPosts] = useState([]);
   const navigation = useNavigation();
 
+  useEffect(() =>{
+    fetch('https://192.168.56.1:')
+    .then(response => response.text)
+    .then(data => setMessage(Data))
+    .then(error => console.error(error))
+  }, []);
+
+
   // Función para simular inicio de sesión exitoso y obtener publicaciones
   const simulateSuccessfulLogin = () => {
     // Simular inicio de sesión exitoso
@@ -112,7 +120,6 @@ const FeedScreen = () => {
         </TouchableOpacity>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-
           <Text style={styles.title}>Feed de Publicaciones</Text>
           {posts.map(post => (
             <View key={post.id} style={styles.postContainer}>
