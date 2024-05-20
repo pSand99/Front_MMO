@@ -9,7 +9,7 @@ const FeedScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() =>{
-    fetch('https://192.168.56.1:')
+    fetch('https://192.168.56.1/api')
     .then(response => response.text)
     .then(data => setMessage(Data))
     .then(error => console.error(error))
