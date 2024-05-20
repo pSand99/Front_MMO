@@ -125,23 +125,31 @@ const ConversationsScreen = () => {
   const tileWidth = screenWidth / numColumns - 20; // Restamos 20 para dejar espacio entre mosaicos
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {conversations.map(conversation => (
-        <TouchableOpacity
-          key={conversation.id}
-          style={[styles.conversationContainer, { width: tileWidth }]}
-          onPress={() => handleConversationPress(conversation.id)}
-        >
-          <Text style={styles.username}>{conversation.user}</Text>
-          <Text numberOfLines={2} style={styles.lastMessage}>{conversation.lastMessage}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+    <View style={styles.outerContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {conversations.map(conversation => (
+          <TouchableOpacity
+            key={conversation.id}
+            style={[styles.conversationContainer, { width: tileWidth }]}
+            onPress={() => handleConversationPress(conversation.id)}
+          >
+            <Text style={styles.username}>{conversation.user}</Text>
+            <Text numberOfLines={2} style={styles.lastMessage}>{conversation.lastMessage}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
+
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  outerContainer: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flex: 1,
+    position: 'absolute',
     padding: 10,
     flexDirection: 'row', // Alinear en fila
     flexWrap: 'wrap', // Permitir que los mosaicos se envuelvan

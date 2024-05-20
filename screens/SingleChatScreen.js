@@ -103,13 +103,13 @@ const SingleChatScreen = () => {
                 styles.messageContainer,
                 { 
                 width: messageWidth,
-                alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end', // Alterna entre la izquierda y la derecha
-                backgroundColor: index % 2 === 0 ? 'yellow' : 'red'
+                alignSelf: index % 2 === 0 ? 'flex-start' : 'flex-end',
+                backgroundColor: index % 2 === 0 ? 'lightgray' : 'lightblue'
                 }
             ]}
             >
                 <Text style={styles.username}>{chat.user}</Text>
-                <Text numberOfLines={2} style={styles.lastMessage}>{chat.lastMessage}</Text>
+                <Text style={styles.lastMessage}>{chat.lastMessage}</Text>
             </View>
         ))}
         </ScrollView>
@@ -120,15 +120,18 @@ const SingleChatScreen = () => {
 
 const styles = StyleSheet.create({
     outerContainer: {
-        flex: 1,
+      flex: 1,
     },
     scrollContainer: {
-        flexGrow: 1, // Permite que el ScrollView crezca y ocupe todo el espacio disponible
-        justifyContent: 'flex-start',
-      paddingVertical: 10, 
-      paddingHorizontal: 30,
+      flex: 1,
+      position: 'absolute',
+      padding: 10,
+      flexDirection: 'column',
+      flexWrap: 'wrap', // Permitir que los mosaicos se envuelvan
+      justifyContent: 'space-between', // Espacio uniforme entre mosaicos
     },
     messageContainer: {
+      flex: 1,
       backgroundColor: '#fff',
       borderRadius: 35,
       marginBottom: 20,
