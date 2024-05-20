@@ -103,24 +103,18 @@ const FeedScreen = () => {
   };
 
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.title}>Feed de Publicaciones</Text>
-    //   {posts.map(post => (
-    //     <View key={post.id} style={styles.postContainer}>
-    //       <Text style={styles.username}>{post.username}</Text>
-    //       <Text style={styles.text}>{post.text}</Text>
-    //     </View>
-    //   ))}
-    //   <Button title="Cerrar sesión" onPress={handleLogout} />
-    // </View>
-
     <View style={styles.outerContainer}>
-        <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainer}>
-          <Ionicons name="chatbubbles-outline" size={24} color="black" />
-        </TouchableOpacity>
-
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <Text style={styles.title}>Feed de Publicaciones</Text>
+        
+        <Text style={styles.title}>Feed de Publicaciones</Text>
+        
+        <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerChat}>
+            <Ionicons name="chatbubbles-outline" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerNewPost}>
+          <Ionicons name="chatbubbles-outline" size={24} color="red" />
+        </TouchableOpacity>
+        
           {posts.map(post => (
             <View key={post.id} style={styles.postContainer}>
               <Text style={styles.username}>{post.username}</Text>
@@ -147,10 +141,15 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
   },
-  iconContainer: {
+  iconContainerChat: {
     position: 'absolute',
     top: 20,
     right: 20,
+  },
+  iconContainerNewPost: {
+    position: 'absolute',
+    top: 20,
+    right: 60,
   },
   title: {
     fontSize: 24,
