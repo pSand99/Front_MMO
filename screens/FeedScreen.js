@@ -111,9 +111,9 @@ const FeedScreen = () => {
         <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerChat}>
             <Ionicons name="chatbubbles-outline" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerNewPost}>
+        {/* <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerNewPost}>
           <Ionicons name="chatbubbles-outline" size={24} color="red" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         
           {posts.map(post => (
             <View key={post.id} style={styles.postContainer}>
@@ -122,7 +122,9 @@ const FeedScreen = () => {
             </View>
           ))}
 
-        <Button title="Cerrar sesión" onPress={handleConversationsPress} />
+        <TouchableOpacity style={styles.screenButton} onPress={handleLogout}>
+          <Text style={styles.buttonText}>Cerrar sesión</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
 
@@ -160,9 +162,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '100%',
     maxWidth: 500,
-    borderRadius: 20,
+    borderRadius: 60,
     marginBottom: 20,
-    padding: 15,
+    padding: 25,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -178,7 +180,17 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    paddingLeft: 5,
   },
+  screenButton: {
+    padding: 10,
+    margin: 5,
+    backgroundColor: 'blue',
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: 'white',
+  }
 });
 
 export default FeedScreen;

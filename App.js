@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
 import FeedScreen from './screens/FeedScreen';
 import ConversationsScreen from './screens/ConversationsScreen';
 import SingleChatScreen from './screens/SingleChatScreen';
+import BubbleTry from './screens/BubbleTry';
 
 const Stack = createStackNavigator();
 
@@ -13,11 +14,12 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Feed" component={FeedScreen} />
         <Stack.Screen name="Conversations" component={ConversationsScreen} />
         <Stack.Screen name="SingleChat" component={SingleChatScreen} />
+        <Stack.Screen name="Bubble" component={BubbleTry} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -13,10 +13,17 @@ const LoginScreen = () => {
     navigation.navigate('Feed');
   };
 
+  const alHome = () => {
+    // Navegar al feed después del inicio de sesión exitoso
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Iniciar sesión</Text>
       <Button title="Iniciar sesión" onPress={simulateSuccessfulLogin} />
+
+      <Button title="Al home" onPress={alHome} />
     </View>
   );
 };
