@@ -102,6 +102,10 @@ const FeedScreen = () => {
     navigation.navigate('Conversations');
   };
 
+  const handleNavigateToPostScreen = () => {
+    navigation.navigate('Posts');
+  };
+
   return (
     <View style={styles.outerContainer}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -114,7 +118,10 @@ const FeedScreen = () => {
         {/* <TouchableOpacity onPress={handleConversationsPress} style={styles.iconContainerNewPost}>
           <Ionicons name="chatbubbles-outline" size={24} color="red" />
         </TouchableOpacity> */}
-        
+        <TouchableOpacity onPress={handleNavigateToPostScreen} style={styles.addButton}>
+          <Text style={styles.buttonText}>Añadir post</Text>
+        </TouchableOpacity>
+
           {posts.map(post => (
             <View key={post.id} style={styles.postContainer}>
               <Text style={styles.username}>{post.username}</Text>
@@ -188,8 +195,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderRadius: 10,
   },
+  addButton: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
   buttonText: {
     color: 'white',
+    fontWeight: 'bold',
   }
 });
 
