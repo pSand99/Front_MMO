@@ -15,6 +15,7 @@ const PostItem = ({ post, onLikePress, onCommentsPress }) => {
             size={24}
             color={post.liked ? 'red' : 'black'}
           />
+           <Text style={styles.likeCount}>{post.likes}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onCommentsPress(post.id)} style={styles.iconButton}>
           <Ionicons name="chatbubble-outline" size={24} color="black" />
@@ -62,16 +63,23 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     marginLeft: 10,
+    lexDirection: 'row',
+    alignItems: 'center',
   },
-  commentContainer: {
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 10,
+  likeCount: {
+    marginLeft: 5,
   },
-  commentText: {
-    fontSize: 16,
-  },
+
+//   commentContainer: {
+//     backgroundColor: '#f0f0f0',
+//     borderRadius: 10,
+//     padding: 10,
+//     marginTop: 10,
+//   },
+//   commentText: {
+//     fontSize: 16,
+//   },
+  
 });
 
 export default PostItem;
