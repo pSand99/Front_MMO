@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, Dimensions, TouchableOpacity, TextInput
 import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { ImageBackground } from 'react-native-web';
 
 const { width, height } = Dimensions.get('window');
 
@@ -54,18 +55,12 @@ const HomeScreen = () => {
 
   // Cerrar modal de LOGIN
   const closeModalLogin = () => {
-    // Animación y cambio de estado visibilidad
-    loginScale.value = withTiming(0, { duration: 600, easing: Easing.in(Easing.exp) }, () => {
       setLoginModalVisible(false);
-    });
   };
 
   // Cerrar modal de REGISTRO
   const closeModalRegister = () => {
-    // Animación y cambio de estado visibilidad
-    registerScale.value = withTiming(0, { duration: 600, easing: Easing.in(Easing.exp) }, () => {
       setRegisterModalVisible(false);
-    });
   };
 
   // Navegación a screen de "LoginScreen"
@@ -123,6 +118,7 @@ const HomeScreen = () => {
       <TouchableOpacity style={styles.screenButton} onPress={handleLogout}>
         <Text style={styles.buttonText}>Botón al login</Text>
       </TouchableOpacity>
+
     </View>
   );
 };
@@ -142,7 +138,7 @@ const styles = StyleSheet.create({
   modalContent: {
     width: 400,
     height: 400,
-    backgroundColor: 'white',
+    backgroundColor: '#f1a1ff',
     borderRadius: '50%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -156,14 +152,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     fontWeight: 'bold',
+    color: 'white',
   },
   goodButton: {
-    color: 'green',
+    color: '#00C04B',
     fontSize: 16,
-    paddingBottom: '3px',
+    marginTop: '15px',
+    marginBottom: '10px',
   },
   closeButton: {
-    color: 'red',
+    color: '#FF3632',
     fontSize: 16,
   },
   input: {
@@ -178,7 +176,7 @@ const styles = StyleSheet.create({
   screenButton: {
     padding: 10,
     margin: 5,
-    backgroundColor: 'blue',
+    backgroundColor: '#d689fd',
     borderRadius: 10,
   },
   buttonText: {
