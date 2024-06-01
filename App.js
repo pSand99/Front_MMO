@@ -6,7 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import FeedScreen from './screens/FeedScreen';
 import ConversationsScreen from './screens/ConversationsScreen';
 import SingleChatScreen from './screens/SingleChatScreen';
-import BubbleTry from './screens/BubbleTry';
+import ProfileScreen from './screens/ProfileScreen';
 import PostScreen from './screens/Posts';
 
 const Stack = createStackNavigator();
@@ -20,7 +20,7 @@ const App = () => {
         <Stack.Screen name="Feed" component={FeedScreen} />
         <Stack.Screen name="Conversations" component={ConversationsScreen} />
         <Stack.Screen name="SingleChat" component={SingleChatScreen} />
-        <Stack.Screen name="Bubble" component={BubbleTry} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Posts" component={PostScreen} />
 
       </Stack.Navigator>

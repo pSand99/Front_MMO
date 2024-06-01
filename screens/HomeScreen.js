@@ -3,7 +3,6 @@ import { View, Text, Button, StyleSheet, Dimensions, TouchableOpacity, TextInput
 import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import { ImageBackground } from 'react-native-web';
 
 const { width, height } = Dimensions.get('window');
 
@@ -68,6 +67,11 @@ const HomeScreen = () => {
     navigation.navigate('Login');
   };
 
+    // Navegación a screen de "ProfileScreen"
+    const handleProfile = () => {
+      navigation.navigate('Profile');
+    };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>¡Hola! Esto es meme-o</Text>
@@ -117,6 +121,10 @@ const HomeScreen = () => {
 
       <TouchableOpacity style={styles.screenButton} onPress={handleLogout}>
         <Text style={styles.buttonText}>Botón al login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.screenButton} onPress={handleProfile}>
+        <Text style={styles.buttonText}>Botón a perfil</Text>
       </TouchableOpacity>
 
     </View>
