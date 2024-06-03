@@ -73,18 +73,23 @@ const HomeScreen = () => {
 
   // Cerrar modal de LOGIN
   const closeModalLogin = () => {
-    setLoginModalVisible(false)
-  }
+      setLoginModalVisible(false);
+  };
 
   // Cerrar modal de REGISTRO
   const closeModalRegister = () => {
-    setRegisterModalVisible(false)
-  }
+      setRegisterModalVisible(false);
+  };
 
   // Navegación a screen de "LoginScreen"
   const handleLogout = () => {
-    navigation.navigate("Login")
-  }
+    navigation.navigate('Login');
+  };
+
+    // Navegación a screen de "ProfileScreen"
+    const handleProfile = () => {
+      navigation.navigate('Profile');
+    };
 
   return (
     <View style={styles.container}>
@@ -171,6 +176,11 @@ const HomeScreen = () => {
       <TouchableOpacity style={styles.screenButton} onPress={handleLogout}>
         <Text style={styles.buttonText}>Botón al login</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.screenButton} onPress={handleProfile}>
+        <Text style={styles.buttonText}>Botón a perfil</Text>
+      </TouchableOpacity>
+
     </View>
   )
 }
@@ -190,11 +200,11 @@ const styles = StyleSheet.create({
   modalContent: {
     width: 400,
     height: 400,
-    backgroundColor: "white",
-    borderRadius: "50%",
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
+    backgroundColor: '#f1a1ff',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -203,15 +213,17 @@ const styles = StyleSheet.create({
   modalText: {
     fontSize: 20,
     marginBottom: 10,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+    color: 'white',
   },
   goodButton: {
-    color: "green",
+    color: '#00C04B',
     fontSize: 16,
-    paddingBottom: "3px",
+    marginTop: '15px',
+    marginBottom: '10px',
   },
   closeButton: {
-    color: "red",
+    color: '#FF3632',
     fontSize: 16,
   },
   input: {
@@ -226,7 +238,7 @@ const styles = StyleSheet.create({
   screenButton: {
     padding: 10,
     margin: 5,
-    backgroundColor: "blue",
+    backgroundColor: '#d689fd',
     borderRadius: 10,
   },
   buttonText: {
