@@ -20,7 +20,7 @@ const FeedScreen = () => {
   const navigation = useNavigation()
 
   useEffect(() => {
-    fetch("http://172.20.10.2:9000/memeo/api/getposts/2")
+    fetch("http://192.168.1.86:9000/memeo/api/getposts/4")
       .then((response) => response.text())
       .then((data) => {
         console.log("Data fetched: ", data)
@@ -184,17 +184,19 @@ const FeedScreen = () => {
         <Text style={styles.title}>Feed de Publicaciones</Text>
         <TouchableOpacity
           onPress={handleConversationsPress}
-          style={styles.iconContainerChat}>
+          style={styles.iconContainerChat}
+        >
           <Ionicons name="chatbox-outline" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleNavigateToPostScreen}
-          style={styles.addButton}>
+          style={styles.addButton}
+        >
           <Text style={styles.buttonText}>Añadir post</Text>
         </TouchableOpacity>
         {posts.map((post) => (
           <PostItem
-            key={post.id}
+            key={post.postID}
             post={post}
             onLikePress={handleLikePress}
             onCommentsPress={handleCommentsPress}
