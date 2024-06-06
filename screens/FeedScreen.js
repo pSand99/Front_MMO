@@ -10,6 +10,12 @@ import { useNavigation } from "@react-navigation/native"
 import { Ionicons } from "@expo/vector-icons"
 import PostItem from "../components/PostItem"
 import CommentModal from "../components/CommentModal"
+import API_BASE_URL from "../config"
+
+const user = {
+  userID: 2,
+  username: "username",
+}
 
 const FeedScreen = () => {
   const [posts, setPosts] = useState([])
@@ -19,110 +25,25 @@ const FeedScreen = () => {
   const [comments, setComments] = useState({})
   const navigation = useNavigation()
 
+  const [memeLikes, setMemeLikes] = useState([
+    {
+      user: {
+        userID: user.userID,
+        username: user.username,
+      },
+    },
+  ])
+
   useEffect(() => {
-    fetch("http://192.168.1.86:9000/memeo/api/getposts/4")
+    fetch("http://192.168.0.13:9000/memeo/api/getposts/2")
       .then((response) => response.text())
       .then((data) => {
         console.log("Data fetched: ", data)
+        debugger
         setPosts(JSON.parse(data))
       })
       .catch((error) => console.error("Error fetching data: ", error))
   }, [])
-
-  // const simulateSuccessfulLogin = () => {
-  //   // Simular obtención de publicaciones
-  //   const simulatedPosts = [
-  //     {
-  //       id: 1,
-  //       username: "usuario1",
-  //       text: "¡Hola mundo!",
-  //       likes: 0,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 2,
-  //       username: "usuario2",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 3,
-  //       username: "usuario3",
-  //       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac maximus nulla. Proin pretium dapibus aliquam. Etiam semper ligula sit amet quam maximus, in porta lectus consectetur. Nunc varius massa massa, quis vehicula arcu consequat nec. Nullam sit amet tempus ante. Sed ornare sollicitudin urna, sit amet lobortis quam. Integer id feugiat ex. Vivamus a volutpat odio. Aliquam tristique lectus et mauris ullamcorper, sed sagittis leo aliquet. Donec viverra elementum magna, a commodo libero congue a. Nulla placerat iaculis fermentum. Vestibulum ullamcorper sit amet est ac sollicitudin. Ut eleifend, odio ut mollis placerat, elit diam finibus augue, ac laoreet risus erat eleifend neque.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 4,
-  //       username: "usuario4",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 5,
-  //       username: "usuario5",
-  //       text: "¡Hola mundo!",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 6,
-  //       username: "usuario6",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 7,
-  //       username: "usuario7",
-  //       text: "¡Hola mundo!",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 8,
-  //       username: "usuario8",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 9,
-  //       username: "usuario1",
-  //       text: "¡Hola mundo!",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 10,
-  //       username: "usuario2",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 11,
-  //       username: "usuario3",
-  //       text: "¡Hola mundo!",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //     {
-  //       id: 12,
-  //       username: "usuario4",
-  //       text: "Esto es una publicación de prueba.",
-  //       likes: 5,
-  //       liked: false,
-  //     },
-  //   ]
-  //   setPosts(simulatedPosts)
-  // }
-
-  // useEffect(() => {
-  //   // simulateSuccessfulLogin();
-  // }, []);
 
   const handleLogout = () => {
     navigation.navigate("Login")
@@ -151,25 +72,54 @@ const FeedScreen = () => {
     setNewComment("")
   }
 
-  const handleLikePress = (postId) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post.id === postId
-          ? {
-              ...post,
-              liked: !post.liked,
-              likes: post.liked ? post.likes - 1 : post.likes + 1,
-            }
-          : post
-      )
+  const handleLikePress = async (postID, userID) => {
+    const postToUpdate = posts.find((post) => post.postID === postID)
+    const userLiked = postToUpdate.memeLikes.some(
+      (like) => like.user.userID === user.userID
     )
+    const url = userLiked
+      ? `${API_BASE_URL}/memeo/api/deletememelike/${userID}/${postID}`
+      : `${API_BASE_URL}/memeo/api/creatememelike`
 
-    // Optionally, you can also make an API call to update the likes on the server
-    // fetch(`https://192.168.56.1/api/posts/${postId}/like`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({ like: !liked }),
-    // })
-    // .catch(error => console.error("Error updating likes: ", error));
+    try {
+      const response = await fetch(url, {
+        method: userLiked ? "DELETE" : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: userLiked
+          ? null
+          : JSON.stringify({
+              post: {
+                postID: postID,
+              },
+              user: {
+                userID: userID,
+              },
+            }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Error al realizar la operación de like.")
+      }
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.postID === postID
+            ? {
+                ...post,
+                memeLikes: userLiked
+                  ? post.memeLikes.filter(
+                      (like) => like.user.userID !== user.userID
+                    )
+                  : [...post.memeLikes, response],
+              }
+            : post
+        )
+      )
+    } catch (error) {
+      console.error("Error:", error)
+    }
   }
 
   const handleCommentsPress = (postId) => {
@@ -184,21 +134,19 @@ const FeedScreen = () => {
         <Text style={styles.title}>Feed de Publicaciones</Text>
         <TouchableOpacity
           onPress={handleConversationsPress}
-          style={styles.iconContainerChat}
-        >
+          style={styles.iconContainerChat}>
           <Ionicons name="chatbox-outline" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleNavigateToPostScreen}
-          style={styles.addButton}
-        >
+          style={styles.addButton}>
           <Text style={styles.buttonText}>Añadir post</Text>
         </TouchableOpacity>
         {posts.map((post) => (
           <PostItem
             key={post.postID}
             post={post}
-            onLikePress={handleLikePress}
+            // onLikePress={handleLikePress(post.postID, user.userID)}
             onCommentsPress={handleCommentsPress}
           />
         ))}
