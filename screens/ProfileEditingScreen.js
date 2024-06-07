@@ -66,7 +66,7 @@ const ProfileEditingScreen = () => {
         <TouchableOpacity style={styles.profileImage} onPress={handleSelectImage}>
             <Image source={{ uri: user.avatar }} style={styles.profileImage} />
         </TouchableOpacity>
-        <TextInput style={styles.inputTextProp} value={usemmmmmmmr.username} editable={false} />
+        <TextInput style={styles.inputTextProp} value={user.username} editable={false} />
         <TextInput style={styles.inputTextProp} secureTextEntry={true} value="password" editable={false} />
         <TextInput style={styles.inputTextProp} value={user.name} editable={false} />
         <TextInput style={styles.inputTextProp} value={user.surname ? user.surname : "null"} editable={false} />
