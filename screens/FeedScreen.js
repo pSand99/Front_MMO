@@ -39,7 +39,6 @@ const FeedScreen = () => {
       .then((response) => response.text())
       .then((data) => {
         console.log("Data fetched: ", data)
-        debugger
         setPosts(JSON.parse(data))
       })
       .catch((error) => console.error("Error fetching data: ", error))
