@@ -46,9 +46,9 @@ const PostItem = ({ post, onLikePress, onCommentsPress }) => {
       <Text style={styles.text}>{post.text_content}</Text>
       <View style={styles.postActions}>
         <TouchableOpacity
-          onPress={() => onLikePress()}
+          // onPress={() => onLikePress()}
           style={styles.iconButton}>
-          <Ionicons
+          {/* <Ionicons
             name={
               post.memeLikes.some((likes) => likes.user.userID === user.userID)
                 ? "heart"
@@ -60,7 +60,8 @@ const PostItem = ({ post, onLikePress, onCommentsPress }) => {
                 ? "red"
                 : "black"
             }
-          />
+          /> */}
+          <Ionicons name="heart-outline" size={24} color="73788B"></Ionicons>
           <Text style={styles.likeCount}>{post.memeLikes.length}</Text>
         </TouchableOpacity>
         <TouchableOpacity
